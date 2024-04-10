@@ -1,11 +1,37 @@
-import { StackInfija, StackOperadores, StackSalida } from "./Dependencies.js";
+import { Stack } from "../models/Stack.js";
+import { StackInfija, StackOperadores,  StackSalida, logic } from "./Dependencies.js";
+
+//import {resultado} from "./Converter.js"
 
 let convertEquation=document.getElementById("btn")
+
 convertEquation.addEventListener("click", function(){
     const equation=document.getElementById("equation").value
-    fillStack(equation)
+    
+    logic.fillStack(equation)
+
+    logic.clearResult()
+
+    for(let i=0; i< StackInfija.getSize();i++){
+        let char=StackInfija.pop()        
+    
+        logic.clasifyChars(char)
+    }
+
+    logic.genResult();
+    
+    printRes(logic.getResult())
+    
+    logic.test()
 })
 
+function printRes(resultado){
+    document.getElementById("mostrarResult").innerText=resultado
+}
+
+
+
+/*
 function fillStack(equation){
     let eq = equation
     for(let i=0; i< eq.length;i++){
@@ -13,6 +39,7 @@ function fillStack(equation){
     }
     invertirStack(StackInfija)
 }
+
 function invertirStack(Stack){
     for(let i=0; i< Stack.getSize();i++){
         let char=Stack.pop()
@@ -33,9 +60,6 @@ function invertirStack(Stack){
         }
     }
     printRes(resultado)
-}
-function printRes(resultado){
-    document.getElementById("mostrarResult").innerText=resultado
 }
 function clasifyChars(character){
     let char = character
@@ -58,4 +82,4 @@ function clasifyChars(character){
             StackOperadores.push(char)
         }
     }    
-}
+}*/

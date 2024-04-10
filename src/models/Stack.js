@@ -10,8 +10,9 @@ export class Stack{
         this.top = null;
         this.size = 0;
     }
+
     push(element) {
-        const newNode = new Node(element);
+        let newNode = new Node(element);
         if (!this.#top) {
             this.#top = newNode;
             this.#size++
@@ -21,6 +22,7 @@ export class Stack{
             this.#size++;
         }
     }
+
     pop() {
         if (!this.#top) return null;
         let popped = this.#top;
@@ -31,16 +33,24 @@ export class Stack{
     }
 
     peek(){
+        if (!this.#top) return null;
         let peek = this.#top
         return peek.getData()
     }
+
     isEmpty(){
         if (this.#size==0)
         return true
     }
+
     getSize(){
         return this.#size
     }
+
+    getItems(){
+        return this.#items
+    }
+
     clear(){
         this.#top=null
     }
